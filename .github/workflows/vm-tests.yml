@@ -47,6 +47,7 @@ jobs:
       - name: Get pip cache dir
         if: steps.changes.outputs.stack == 'true'
         id: pip-cache
+        shell: bash
         run: |
           echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
 

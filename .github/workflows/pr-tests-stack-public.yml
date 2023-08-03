@@ -53,6 +53,7 @@ jobs:
       - name: Get pip cache dir
         if: steps.changes.outputs.stack == 'true'
         id: pip-cache
+        shell: bash
         run: |
           echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
 
@@ -179,6 +180,7 @@ jobs:
       - name: Get job name and url
         id: job_name
         if: failure()
+        shell: bash
         run: |
           echo "job_name=$(echo ${{ github.job }})" >> $GITHUB_OUTPUT
           echo "url=$(echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_OUTPUT
@@ -199,6 +201,7 @@ jobs:
       - name: Get pull request url
         id: pull_request
         if: failure()
+        shell: bash
         run: |
           echo "url=$(echo ${{ github.event.pull_request.html_url }})" >> $GITHUB_OUTPUT
 
