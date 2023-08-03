@@ -53,7 +53,7 @@ jobs:
         id: get-hashes
         run: |
           current_hash=$(checksumdir ./packages/hagrid)
-          echo "::set-output name=current_hash::$current_hash"
+          echo "current_hash=$current_hash" >> $GITHUB_STATE
           previous_hash=$(cat ./scripts/hagrid_hash)
 
       - name: Set up Python
