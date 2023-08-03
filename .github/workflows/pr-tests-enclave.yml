@@ -54,7 +54,7 @@ jobs:
         id: pip-cache
         if: steps.changes.outputs.syft == 'true'
         run: |
-          echo "dir=$(pip cache dir)" >> $GITHUB_STATE
+          echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
 
       - name: pip cache
         uses: actions/cache@v3

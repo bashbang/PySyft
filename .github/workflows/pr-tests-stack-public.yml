@@ -54,7 +54,7 @@ jobs:
         if: steps.changes.outputs.stack == 'true'
         id: pip-cache
         run: |
-          echo "dir=$(pip cache dir)" >> $GITHUB_STATE
+          echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
 
       - name: pip cache
         uses: actions/cache@v3
@@ -180,14 +180,14 @@ jobs:
         id: job_name
         if: failure()
         run: |
-          echo "job_name=$(echo ${{ github.job }})" >> $GITHUB_STATE
-          echo "url=$(echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STATE
+          echo "job_name=$(echo ${{ github.job }})" >> $GITHUB_OUTPUT
+          echo "url=$(echo ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_OUTPUT
 
       - name: Get current date
         id: date
         if: failure()
         shell: bash
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_STATE
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Upload logs to GitHub
         uses: actions/upload-artifact@master
@@ -200,7 +200,7 @@ jobs:
         id: pull_request
         if: failure()
         run: |
-          echo "url=$(echo ${{ github.event.pull_request.html_url }})" >> $GITHUB_STATE
+          echo "url=$(echo ${{ github.event.pull_request.html_url }})" >> $GITHUB_OUTPUT
 
       - name: Job Report Status
         if: github.repository == 'OpenMined/PySyft' && failure()
